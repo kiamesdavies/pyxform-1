@@ -981,6 +981,7 @@ class VariableNameReader(SpreadsheetReader):
 if __name__ == "__main__":
     # Open the excel file specified by the argument of this python call,
     # convert that file to json, then print it
+    output_file=""
     if len(sys.argv) < 2:
         #print "You must supply a file argument."
         filename = "xlsform_spec_test.xls"
@@ -988,10 +989,11 @@ if __name__ == "__main__":
         path += filename
     else:
         path = sys.argv[1]
+        output_file=sys.argv[2]
 
     warnings = []
     json_dict = parse_file_to_json(path, warnings=warnings)
-    print_pyobj_to_json(json_dict)
+    print_pyobj_to_json(json_dict,output_file)
 
     if len(warnings) > 0:
         sys.stderr.write("Warnings:" + '\n')
